@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'app/JavaScript/paginacao.js' %}"></script>
+
+    <title>
+        {% if pag == 'index' %}
+            Home
+        {% elif pag == 'detalhes' %}
+            Detalhes - {{livro.titulo}}
+        {% elif pag == 'cadastroLivro' %}
+            Novo Livro
+        {% elif pag == 'cadastroAutor' %}
+            Novo Autor
+        {% elif pag == 'todos' %}
+            Livros
+        {% endif %}
+    </title>
+</head>
+
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>
+                <a class="navbar-brand" href="{% url 'app:index' %}">BookS</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastro
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        <li><a href="{% url 'app:methLivro' %}">Livros</a></li>
+                        <li><a href="{% url 'app:methAutor' %}">Autores</a></li>
+                        <li><a href="#">Editoras</a></li> 
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lista
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        <li><a href="{% url 'app:listaTodosLivros' 1 %}">Livros</a></li>
+                        <li><a href="{% url 'app:listaTodosAutores' 1 %}">Autores</a></li>
+                        <li><a href="#">Editoras</a></li> 
+                        </ul>
+                    </li>
+
+                    <li><a href="{% url 'app:listaTodosLivros' 1 %}">Lista</a></li> 
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../admin/">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+{% if pag == 'index' %}
+    {% include "app/index.html" %}
+{% elif pag == 'detalhes' %}
+    {% include "app/detalhes.html" %}
+{% elif pag == 'cadastroLivro' %}
+    {% include "app/cadastroLivro.html" %}
+{% elif pag == 'cadastroAutor' %}
+    {% include "app/cadastroAutor.html" %}
+{% elif pag == 'todosLivros' %}
+    {% include "app/listaLivros.html" %}
+{% elif pag == 'todosAutores' %}
+    {% include "app/listaAutores.html" %}
+{% endif %}

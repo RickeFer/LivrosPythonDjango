@@ -1,0 +1,51 @@
+.div-centro
+{
+    width: 90%;
+    position: absolute;
+    left: 5%;
+    margin-left: 5px;
+}
+
+.texto-centro
+{
+    height: 90%;
+    position: relative;
+    top: 5%;
+    margin-top: 5%;
+}
+
+.grid-6
+{
+    padding-bottom: 20px;
+}
+
+.grid-6-shadow
+{
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+}
+
+#grid-img:hover
+{
+    box-shadow: 7px 7px 10px rgba(0,0,0,0.5);
+}
+
+.grid-row
+{
+    padding: 15px;
+    background-color: #CCC;
+}
+
+.grid-row:hover
+{
+    background-color: #BFBFBF;
+}
+
+.grid-row a
+{
+    color: #1A0000;
+}
+
+.grid-row a:hover
+{
+    color: #330000;
+}

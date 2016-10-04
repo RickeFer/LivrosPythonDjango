@@ -1,0 +1,32 @@
+
+<body>
+    <div class="div-centro">
+        <div class="well form-group">
+            <h2>Livro</h2>
+            <form action="{% url 'app:methLivro' %}" method="POST">{% csrf_token %}
+                <label for="titulo">Titulo:</label>
+                <input type="text" class="form-control" id="titulo" name="txtTitulo" />
+
+                <label for="ano">Ano:</label>
+                <input type="number" class="form-control" id="ano" name="txtAno" />
+
+                <label for="descricao">Descrição:</label>
+                <textarea rows="4" cols="50" class="form-control" id="descricao" name="txtDescricao" ></textarea>
+
+                <label for="capa">Capa:</label>
+                <input type="file" class="form-control" id="capa" name="imgCapa" />
+
+                <label for="autor">Autores:</label>
+                <select class="form-control" id="autor" name="cbxAutor" >
+                    {% for aut in autores %}
+                        <option value="{{aut}}">{{aut.nome}}({{aut.anoNasc}})</option>
+                    {% endfor %}
+                </select>
+                <br>
+
+                <input type="submit" class="form-control btn-primary" value="CADASTRAR" />
+                <input type="hidden" value="cadastrar" name="frmOp" />
+            </form>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,20 @@
+
+
+<body>
+    <div class="container div-centro">
+        {% if livros %}
+            <div class="container">
+                {% for livro in livros %}
+                    <div class="col-md-4 grid-6">
+                        {% if ' ' in livro.titulo %}
+                            <a href="{% url 'app:detalhes' livro.ChamarUrl %}">
+                        {% else %}
+                            <a href="{% url 'app:detalhes' livro.titulo %}">
+                        {% endif %}
+                        <img id="grid-img" class="grid-6-shadow" src="{{livro.capa.thumbnail.url}}" alt="{{livro.titulo}}"/></a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>

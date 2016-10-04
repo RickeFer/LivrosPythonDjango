@@ -1,0 +1,33 @@
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1><i class="col-md-10">{{livro.titulo}}</i></h1>
+
+            <img src="{{livro.capa.minithumb.url}}" alt="{{livro.titulo}}" data-toggle="modal" data-target="#myModal" />
+
+            <h6>{{autor.autor}} - {{livro.ano}}</h6>
+            <p>{{livro.descricao}}</p>
+
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">{{livro.titulo}}</h4>
+                            </div>
+                        <div class="modal-body">
+                            <img src="{{livro.capa.normal.url}}" alt="{{livro.titulo}}" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>

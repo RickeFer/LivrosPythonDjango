@@ -1,0 +1,19 @@
+
+<body>
+    <div class="div-centro">
+        <div class="well form-group">
+            <h2>Autor</h2>
+            <form action="{% url 'app:methAutor' %}" method="POST">{% csrf_token %}
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="txtNome" />
+
+                <label for="ano">Ano Nascimento:</label>
+                <input type="number" class="form-control" id="ano" name="txtAno" />
+                <br>
+            
+                <input type="submit" class="form-control btn-primary" value="CADASTRAR" />
+                <input type="hidden" value="cadastrar" name="frmOp" />
+            </form>
+        </div>
+    </div>
+</body>

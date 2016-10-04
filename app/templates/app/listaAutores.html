@@ -1,0 +1,69 @@
+
+
+<body>
+    <div class="container div-centro">
+        {% if autores %}
+            <div class="container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Autor</th>
+                            <th>Nº Livros</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                {% for autor in autores %}
+                    <tr>
+                        <td><a href="#">{{autor.nome}}</a></td>
+                        <td>
+                            {% for key, item in quant.items %}
+                                {% if key == autor %}
+                                    {{item}}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if atual == 1 %}
+                        <li class="disabled">
+                            <a aria-label="Previous">
+                    {% else %}
+                        <li>
+                            <a href="{% url 'app:listaTodosAutores' ant %}" aria-label="Previous">
+                    {% endif %}
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    {% for n in total %}
+                        {% if n == atual %}
+                            <li class="active">
+                                <span>{{n}} <span class="sr-only">(current)</span></span>
+                        {% else %}
+                            <li>
+                            <a href="{% url 'app:listaTodosAutores' n %}" >{{n}} </a>
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+
+                    {% if atual == ultimo %}
+                        <li class="disabled">
+                            <a aria-label="Next">
+                    {% else %}
+                        <li>
+                            <a href="{% url 'app:listaTodosAutores' prox %}" aria-label="Next">
+                    {% endif %}
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+</body>
