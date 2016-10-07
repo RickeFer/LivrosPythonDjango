@@ -54,6 +54,26 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'livros.urls'
 
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}
+
+if os.getcwd() == '/app':
+    import dj_database_url
+    DATABSES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X-FORWARDED_PROTO', 'https')
+
+    ALLOWED_HOSTS = ['*']
+
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -75,13 +95,25 @@ WSGI_APPLICATION = 'livros.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+import psycopg2
+import urlparse
 
+urlparse.users_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+}"""
 
 
 # Password validation
